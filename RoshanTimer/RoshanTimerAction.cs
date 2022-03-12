@@ -10,15 +10,39 @@ namespace RoshanTimer
     public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.CounterSettingsModel>
     {
         private Timer applicationTimer; // Used for processing input. Cannot be paused.
+        
+        // Hold
         private bool isKeyHeld;
         private DateTime pressedKeyTime;
-        private bool isApplicationRestarting;
+        private bool ignoreKeyRelease;
 
+        // Double Click
+        private int numberOfPresses;
+        private DateTime releasedKeyTime;
+        private bool hasDoubleClicked;
+        
+        // Roshan
         private Timer roshanTimer; // Used for keeping track of roshan's respawn time. Can be paused.
         private bool isRoshanTimerPaused;
+        private int deathCount;
 
         public override Task OnKeyDown(StreamDeckEventPayload args)
         {
+            if (numberOfPresses > 1)
+            {
+                // If user last keystroke was less than than 0.5f second ago...
+                if ((DateTime.Now - releasedKeyTime).TotalSeconds < 0.5)
+                {
+                    // User has double clicked!
+                    numberOfPresses = 0;
+                    hasDoubleClicked = true;
+                    
+                    // Debug time between double click keys:
+                    // Manager.SetImageAsync(args.context, "images/blank.png");
+                    // Manager.SetTitleAsync(args.context, (DateTime.Now - releasedKeyTime).TotalSeconds.ToString("F2"));
+                }
+            }
+            
             pressedKeyTime = DateTime.Now;
             isKeyHeld = true;
 
@@ -27,12 +51,24 @@ namespace RoshanTimer
 
         public override async Task OnKeyUp(StreamDeckEventPayload args)
         {
+            numberOfPresses++;
+            releasedKeyTime = DateTime.Now;
+
             isKeyHeld = false;
-            
-            // Ignore re-init when the user was holding to reset the roshan timer/app.
-            if (isApplicationRestarting)
+
+            if (hasDoubleClicked)
             {
-                isApplicationRestarting = false;
+                hasDoubleClicked = false;
+                deathCount++;
+                SettingsModel.Counter = 0; // Reset timer
+                ResumeRoshanTimer(args);
+                return;
+            }
+
+            // Ignore re-init when the user was holding to reset the roshan timer/app.
+            if (ignoreKeyRelease)
+            {
+                ignoreKeyRelease = false;
                 return;
             }
 
@@ -51,20 +87,8 @@ namespace RoshanTimer
             
             // First press - Create roshan timer
             if (roshanTimer == null)
-            {
-                roshanTimer = new Timer();
-                roshanTimer.Elapsed += (sender, eventArgs) =>
-                {
-                    RoshanTimerTick(args);
-                };
-                roshanTimer.AutoReset = true;
-                roshanTimer.Interval = 1000; // Tick one per second
-                roshanTimer.Start();
-                isRoshanTimerPaused = false;
-                await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
-                await Manager.SetImageAsync(args.context, "images/dead.png");
-                
-                // Early exit
+            { 
+                CreateRoshanTimer(args);
                 return;
             }
             
@@ -80,8 +104,7 @@ namespace RoshanTimer
 
             await base.OnKeyUp(args);
         }
-
-        // TODO: Add double click for leveling up roshan / confirming roshan has died.
+        
         private void ApplicationTimerTick(StreamDeckEventPayload args)
         {
             if (!isKeyHeld)
@@ -98,19 +121,42 @@ namespace RoshanTimer
 
         private void RestartApplication(StreamDeckEventPayload args)
         {
-            isApplicationRestarting = true;
+            ignoreKeyRelease = true;
             SettingsModel.Counter = 0;
+            deathCount = 0;
             
-            // Properly dispose of roshan timer (Will get re-created on button release on next press)
-            roshanTimer.Stop();
-            roshanTimer.Dispose();
-            roshanTimer = null;
+            DeleteRoshanTimer();
 
             // Reset action image to Roshan
             Manager.SetImageAsync(args.context, "images/actionDefaultImage@2x.png");
             Manager.SetTitleAsync(args.context, string.Empty);
         }
 
+        private async void CreateRoshanTimer(StreamDeckEventPayload args)
+        {
+            roshanTimer = new Timer();
+            roshanTimer.Elapsed += (sender, eventArgs) =>
+            {
+                RoshanTimerTick(args);
+            };
+            roshanTimer.AutoReset = true;
+            roshanTimer.Interval = 1000; // Tick one per second
+            roshanTimer.Start();
+            isRoshanTimerPaused = false;
+            await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            await Manager.SetImageAsync(args.context, "images/dead.png");
+        }
+
+        /// <summary>
+        /// Properly dispose of roshan timer (Gets re-created on button release on next press)
+        /// </summary>
+        private void DeleteRoshanTimer()
+        {
+            roshanTimer.Stop();
+            roshanTimer.Dispose();
+            roshanTimer = null;
+        }
+        
         /// <summary>
         /// An update method that gets invoked every second. Intended for timer incrementing.
         /// </summary>
@@ -167,7 +213,7 @@ namespace RoshanTimer
         }
 
         /// <summary>
-        /// Returns a string in the "0:00" format.
+        /// Returns a string in the "(0) 0:00" format. First number indicates how many time roshan has died.
         /// </summary>
         /// <param name="totalSeconds"></param>
         /// <returns></returns>
@@ -176,10 +222,10 @@ namespace RoshanTimer
             int totalMinutes = totalSeconds / 60;
             if (totalMinutes == 0)
             {
-                return totalMinutes + ":" + totalSeconds.ToString("00");
+                return "(" + deathCount + ") " + totalMinutes + ":" + totalSeconds.ToString("00");
             }
             
-            return totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
+            return  "(" + deathCount + ") " + totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
         }
     }
 }
