@@ -62,7 +62,7 @@ namespace RoshanTimer
                 roshanTimer.Start();
                 isRoshanTimerPaused = false;
                 await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
-                await Manager.SetImageAsync(args.context, "images/blank.png");
+                await Manager.SetImageAsync(args.context, "images/dead.png");
                 
                 // Early exit
                 return;
@@ -120,8 +120,23 @@ namespace RoshanTimer
             {
                 return;
             }
-            
+
             SettingsModel.Counter++;
+            int totalMinutes = SettingsModel.Counter / 60;
+
+            if (totalMinutes < 8)
+            {
+                Manager.SetImageAsync(args.context, "images/dead.png");
+            }
+            else if (totalMinutes < 11)
+            {
+                Manager.SetImageAsync(args.context, "images/maybe.png");
+            }
+            else
+            {
+                Manager.SetImageAsync(args.context, "images/alive.png");
+            }
+
             Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
         }
 

@@ -6,8 +6,8 @@
       "States": [
         {
           "Image": "images/actionDefaultImage",
-          "TitleAlignment": "middle",
-          "FontSize": "10"
+          "TitleAlignment": "bottom",
+          "FontSize": "12"
         }
       ],
       "SupportedInMultiActions": true,
