@@ -2,7 +2,7 @@
   "Actions": [
     {
       "Icon": "images/actionIcon",
-      "Name": "RoshanTimerAction",
+      "Name": "Roshan Timer",
       "States": [
         {
           "Image": "images/actionDefaultImage",
