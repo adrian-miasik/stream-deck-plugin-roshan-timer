@@ -9,7 +9,7 @@ namespace RoshanTimer
     public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.CounterSettingsModel>
     {
         private Timer timer;
-        
+
         public override Task OnKeyDown(StreamDeckEventPayload args)
         {
             if (timer == null)
@@ -31,7 +31,18 @@ namespace RoshanTimer
         {
             SettingsModel.Counter++;
             await Manager.SetImageAsync(args.context, "images/blank.png");
-            await Manager.SetTitleAsync(args.context, SettingsModel.Counter.ToString());
+            await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+        }
+
+        private string GetFormattedString(int totalSeconds)
+        {
+            int totalMinutes = totalSeconds / 60;
+            if (totalMinutes == 0)
+            {
+                return totalSeconds.ToString();
+            }
+            
+            return totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
         }
     }
 }
