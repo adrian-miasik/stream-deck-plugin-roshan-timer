@@ -124,6 +124,8 @@ namespace RoshanTimer
             ignoreKeyRelease = true;
             SettingsModel.Counter = 0;
             deathCount = 0;
+            numberOfPresses = 0;
+            hasDoubleClicked = false;
             
             DeleteRoshanTimer();
 
