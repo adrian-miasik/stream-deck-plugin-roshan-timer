@@ -9,8 +9,9 @@ namespace RoshanTimer
     public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.CounterSettingsModel>
     {
         private Timer timer;
-
-        public override Task OnKeyDown(StreamDeckEventPayload args)
+        private bool isTimerPaused;
+        
+        public override Task OnKeyUp(StreamDeckEventPayload args)
         {
             if (timer == null)
             {
@@ -20,8 +21,24 @@ namespace RoshanTimer
                     Tick(args);
                 };
                 timer.AutoReset = true;
-                timer.Interval = 1000; // Tick one per second
+                timer.Interval = 100; // Tick one per second
                 timer.Start();
+                isTimerPaused = false;
+                
+                // Early exit
+                return Task.CompletedTask;
+            }
+            
+            if (isTimerPaused)
+            {
+                timer.Start();
+                isTimerPaused = false;
+            }
+            else if (!isTimerPaused)
+            {
+                // Pause timer
+                timer.Stop();
+                isTimerPaused = true;
             }
 
             return Task.CompletedTask;
