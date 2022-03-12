@@ -22,7 +22,7 @@
   "URL": "https://www.adrian-miasik.com",
   "CodePathWin": "RoshanTimer.exe",
   "CodePathMac":  "RoshanTimer",
-  "Category": "Roshan Timer [Adrian Miasik]",
+  "Category": "Adrian Miasik",
   "CategoryIcon": "images/category/categoryIcon",
   "Disabled":  false,
   "PropertyInspectorPath": "property_inspector/property_inspector.html",
