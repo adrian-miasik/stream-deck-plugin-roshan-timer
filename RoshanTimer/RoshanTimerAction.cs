@@ -81,6 +81,7 @@ namespace RoshanTimer
             await base.OnKeyUp(args);
         }
 
+        // TODO: Add double click for leveling up roshan / confirming roshan has died.
         private void ApplicationTimerTick(StreamDeckEventPayload args)
         {
             if (!isKeyHeld)
