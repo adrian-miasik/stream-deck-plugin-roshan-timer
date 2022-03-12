@@ -7,26 +7,26 @@
         {
           "Image": "images/actionDefaultImage",
           "TitleAlignment": "middle",
-          "FontSize": "16"
+          "FontSize": "12"
         }
       ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "The first action for the RoshanTimer Stream Deck plugin",
+      "SupportedInMultiActions": true,
+      "Tooltip": "Keep track of Dota 2's Roshan respawn time and death count.",
       "UUID": "com.adrian-miasik.roshan-timer.DefaultPluginAction"
     }
   ],
-	"Category": "Your Plugin Category",
-	"CategoryIcon": "images/category/categoryIcon",
-	"Disabled":  false,
-	"Author": "Your Name",
-	"CodePathWin": "RoshanTimer.exe",
-	"CodePathMac":  "RoshanTimer",
-  "PropertyInspectorPath": "property_inspector/property_inspector.html",
-  "Description": "Description of RoshanTimer.",
-  "Name": "RoshanTimer",
+  "Name": "Roshan Timer",
+  "Description": "Track the respawn time and death count of Roshan. (Dota 2)",
+  "Author": "Adrian Miasik",
   "Icon": "images/pluginIcon",
-  "URL": "https://www.elgato.com/gaming/stream-deck",
-  "Version": "1.0",
+  "URL": "https://www.adrian-miasik.com",
+  "CodePathWin": "RoshanTimer.exe",
+  "CodePathMac":  "RoshanTimer",
+  "Category": "Roshan Timer [Adrian Miasik]",
+  "CategoryIcon": "images/category/categoryIcon",
+  "Disabled":  false,
+  "PropertyInspectorPath": "property_inspector/property_inspector.html",
+  "Version": "0.1",
 	"SDKVersion": 2,
 	"Software": {
 		"MinimumVersion":  "4.1"
