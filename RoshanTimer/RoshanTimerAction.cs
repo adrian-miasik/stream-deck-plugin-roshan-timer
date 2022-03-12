@@ -29,6 +29,7 @@ namespace RoshanTimer
         {
             isKeyHeld = false;
             
+            // Ignore re-init when the user was holding to reset the roshan timer/app.
             if (isApplicationRestarting)
             {
                 isApplicationRestarting = false;
