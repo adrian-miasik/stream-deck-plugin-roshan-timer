@@ -11,7 +11,7 @@ namespace RoshanTimer
         private Timer timer;
         private bool isTimerPaused;
         
-        public override Task OnKeyUp(StreamDeckEventPayload args)
+        public override async Task OnKeyDown(StreamDeckEventPayload args)
         {
             if (timer == null)
             {
@@ -21,33 +21,34 @@ namespace RoshanTimer
                     Tick(args);
                 };
                 timer.AutoReset = true;
-                timer.Interval = 100; // Tick one per second
+                timer.Interval = 1000; // Tick one per second
                 timer.Start();
                 isTimerPaused = false;
+                await Manager.SetImageAsync(args.context, "images/blank.png");
                 
                 // Early exit
-                return Task.CompletedTask;
+                return;
             }
             
             if (isTimerPaused)
             {
                 timer.Start();
                 isTimerPaused = false;
+                await Manager.SetTitleAsync(args.context, "Resuming");
             }
             else if (!isTimerPaused)
             {
                 // Pause timer
                 timer.Stop();
                 isTimerPaused = true;
+                
+                await Manager.SetTitleAsync(args.context, "Paused");
             }
-
-            return Task.CompletedTask;
         }
 
         private async void Tick(StreamDeckEventPayload args)
         {
             SettingsModel.Counter++;
-            await Manager.SetImageAsync(args.context, "images/blank.png");
             await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
         }
 
