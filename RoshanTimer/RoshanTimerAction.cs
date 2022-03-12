@@ -11,7 +11,7 @@ namespace RoshanTimer
         private Timer timer;
         private bool isTimerPaused;
         
-        public override async Task OnKeyDown(StreamDeckEventPayload args)
+        public override async Task OnKeyUp(StreamDeckEventPayload args)
         {
             if (timer == null)
             {
@@ -24,6 +24,7 @@ namespace RoshanTimer
                 timer.Interval = 1000; // Tick one per second
                 timer.Start();
                 isTimerPaused = false;
+                await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
                 await Manager.SetImageAsync(args.context, "images/blank.png");
                 
                 // Early exit
@@ -34,7 +35,7 @@ namespace RoshanTimer
             {
                 timer.Start();
                 isTimerPaused = false;
-                await Manager.SetTitleAsync(args.context, "Resuming");
+                await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
             }
             else if (!isTimerPaused)
             {
@@ -44,6 +45,8 @@ namespace RoshanTimer
                 
                 await Manager.SetTitleAsync(args.context, "Paused");
             }
+
+            await base.OnKeyUp(args);
         }
 
         private async void Tick(StreamDeckEventPayload args)
@@ -57,7 +60,7 @@ namespace RoshanTimer
             int totalMinutes = totalSeconds / 60;
             if (totalMinutes == 0)
             {
-                return totalSeconds.ToString();
+                return totalMinutes + ":" + totalSeconds.ToString("00");
             }
             
             return totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
