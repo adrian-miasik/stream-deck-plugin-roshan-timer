@@ -49,7 +49,7 @@ namespace RoshanTimer
             return base.OnKeyDown(args);
         }
 
-        public override async Task OnKeyUp(StreamDeckEventPayload args)
+        public override Task OnKeyUp(StreamDeckEventPayload args)
         {
             numberOfPresses++;
             releasedKeyTime = DateTime.Now;
@@ -62,14 +62,14 @@ namespace RoshanTimer
                 deathCount++;
                 SettingsModel.Counter = 0; // Reset timer
                 ResumeRoshanTimer(args);
-                return;
+                return Task.CompletedTask;
             }
 
             // Ignore re-init when the user was holding to reset the roshan timer/app.
             if (ignoreKeyRelease)
             {
                 ignoreKeyRelease = false;
-                return;
+                return Task.CompletedTask;
             }
 
             // First press - Create application timer to poll for inputs such as long presses
@@ -89,7 +89,7 @@ namespace RoshanTimer
             if (roshanTimer == null)
             { 
                 CreateRoshanTimer(args);
-                return;
+                return Task.CompletedTask;
             }
             
             // Play / Pause
@@ -102,7 +102,7 @@ namespace RoshanTimer
                 PauseRoshanTimer(args);
             }
 
-            await base.OnKeyUp(args);
+            return base.OnKeyUp(args);
         }
         
         private void ApplicationTimerTick(StreamDeckEventPayload args)
@@ -132,7 +132,7 @@ namespace RoshanTimer
             Manager.SetTitleAsync(args.context, string.Empty);
         }
 
-        private async void CreateRoshanTimer(StreamDeckEventPayload args)
+        private void CreateRoshanTimer(StreamDeckEventPayload args)
         {
             roshanTimer = new Timer();
             roshanTimer.Elapsed += (sender, eventArgs) =>
@@ -143,8 +143,8 @@ namespace RoshanTimer
             roshanTimer.Interval = 1000; // Tick one per second
             roshanTimer.Start();
             isRoshanTimerPaused = false;
-            await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
-            await Manager.SetImageAsync(args.context, "images/dead.png");
+            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            Manager.SetImageAsync(args.context, "images/dead.png");
         }
 
         /// <summary>
@@ -192,24 +192,24 @@ namespace RoshanTimer
         /// unpaused.
         /// </summary>
         /// <param name="args"></param>
-        private async void ResumeRoshanTimer(StreamDeckEventPayload args)
+        private void ResumeRoshanTimer(StreamDeckEventPayload args)
         {
             // Resume timer
             roshanTimer.Start();
             isRoshanTimerPaused = false;
-            await Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
         }
 
         /// <summary>
         /// Pauses the timer so it can no longer accumulate seconds. Useful for when the Dota 2 match is paused.
         /// </summary>
         /// <param name="args"></param>
-        private async void PauseRoshanTimer(StreamDeckEventPayload args)
+        private void PauseRoshanTimer(StreamDeckEventPayload args)
         {
             roshanTimer.Stop();
             isRoshanTimerPaused = true;
                 
-            await Manager.SetTitleAsync(args.context, "Paused");
+            Manager.SetTitleAsync(args.context, "Paused");
         }
 
         /// <summary>
