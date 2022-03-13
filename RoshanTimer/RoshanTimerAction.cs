@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace RoshanTimer
 {
-    [ActionUuid(Uuid="com.adrian-miasik.roshan-timer.DefaultPluginAction")]
+    [ActionUuid(Uuid="com.adrian-miasik.roshan-timer.action")]
     public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.CounterSettingsModel>
     {
         private Timer applicationTimer; // Used for processing input. Cannot be paused.

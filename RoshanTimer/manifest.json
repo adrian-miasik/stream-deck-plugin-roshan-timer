@@ -12,7 +12,7 @@
       ],
       "SupportedInMultiActions": true,
       "Tooltip": "Keep track of Dota 2's Roshan respawn time and death count.",
-      "UUID": "com.adrian-miasik.roshan-timer.DefaultPluginAction"
+      "UUID": "com.adrian-miasik.roshan-timer.action"
     }
   ],
   "Name": "Roshan Timer",
@@ -20,8 +20,7 @@
   "Author": "Adrian Miasik",
   "Icon": "images/pluginIcon",
   "URL": "https://www.adrian-miasik.com",
-  "CodePathWin": "RoshanTimer.exe",
-  "CodePathMac":  "RoshanTimer",
+  "CodePath": "RoshanTimer.exe",
   "Category": "Adrian Miasik",
   "CategoryIcon": "images/category/categoryIcon",
   "Disabled":  false,
