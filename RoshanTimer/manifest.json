@@ -2,7 +2,7 @@
   "Actions": [
     {
       "Icon": "images/actionIcon",
-      "Name": "Roshan Timer",
+      "Name": "Dota 2 - Roshan Timer",
       "States": [
         {
           "Image": "images/actionDefaultImage",
