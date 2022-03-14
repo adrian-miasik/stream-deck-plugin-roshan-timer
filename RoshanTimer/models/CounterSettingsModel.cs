@@ -1,7 +1,7 @@
 ﻿namespace RoshanTimer.Models
 {
-  public class CounterSettingsModel
+  public class TotalSecondsSettingsModel
   {
-	public int Counter { get; set; } = 0;
+	public int TotalSeconds { get; set; } = 0;
   }
 }

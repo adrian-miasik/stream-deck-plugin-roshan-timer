@@ -7,7 +7,7 @@ using System.Timers;
 namespace RoshanTimer
 {
     [ActionUuid(Uuid="com.adrian-miasik.roshan-timer.action")]
-    public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.CounterSettingsModel>
+    public class RoshanTimerAction : BaseStreamDeckActionWithSettingsModel<Models.TotalSecondsSettingsModel>
     {
         private Timer applicationTimer; // Used for processing input. Cannot be paused.
         
@@ -60,7 +60,7 @@ namespace RoshanTimer
             {
                 hasDoubleClicked = false;
                 deathCount++;
-                SettingsModel.Counter = 0; // Reset timer
+                SettingsModel.TotalSeconds = 0; // Reset timer
                 ResumeRoshanTimer(args);
                 if (deathCount <= 3)
                 {
@@ -130,7 +130,7 @@ namespace RoshanTimer
         private void RestartApplication(StreamDeckEventPayload args)
         {
             ignoreKeyRelease = true;
-            SettingsModel.Counter = 0;
+            SettingsModel.TotalSeconds = 0;
             deathCount = 0;
             numberOfPresses = 0;
             hasDoubleClicked = false;
@@ -153,7 +153,7 @@ namespace RoshanTimer
             roshanTimer.Interval = 1000; // Tick one per second
             roshanTimer.Start();
             isRoshanTimerPaused = false;
-            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.TotalSeconds));
             Manager.SetImageAsync(args.context, "images/dead0.png");
         }
 
@@ -178,8 +178,8 @@ namespace RoshanTimer
                 return;
             }
 
-            SettingsModel.Counter++;
-            int totalMinutes = SettingsModel.Counter / 60;
+            SettingsModel.TotalSeconds++;
+            int totalMinutes = SettingsModel.TotalSeconds / 60;
 
             if (totalMinutes < 8)
             {
@@ -194,7 +194,7 @@ namespace RoshanTimer
                 Manager.SetImageAsync(args.context, "images/alive.png");
             }
 
-            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.TotalSeconds));
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace RoshanTimer
             // Resume timer
             roshanTimer.Start();
             isRoshanTimerPaused = false;
-            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
+            Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.TotalSeconds));
         }
 
         /// <summary>

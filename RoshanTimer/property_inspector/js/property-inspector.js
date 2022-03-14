@@ -5,7 +5,7 @@ var websocket = null,
   inInfo = null,
   actionInfo = {},
   settingsModel = {
-	Counter: 0
+	TotalSeconds: 0
   };
 
 function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
@@ -16,10 +16,10 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
 
   //initialize values
   if (actionInfo.payload.settings.settingsModel) {
-	settingsModel.Counter = actionInfo.payload.settings.settingsModel.Counter;
+	settingsModel.TotalSeconds = actionInfo.payload.settings.settingsModel.TotalSeconds;
   }
 
-  document.getElementById('txtCounterValue').value = settingsModel.Counter;
+  document.getElementById('txtTotalSecondsValue').value = settingsModel.TotalSeconds;
 
   websocket.onopen = function () {
 	var json = { event: inRegisterEvent, uuid: inUUID };
@@ -34,9 +34,9 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
 	var sdEvent = jsonObj['event'];
 	switch (sdEvent) {
 	  case "didReceiveSettings":
-		if (jsonObj.payload.settings.settingsModel.Counter) {
-		  settingsModel.Counter = jsonObj.payload.settings.settingsModel.Counter;
-		  document.getElementById('txtCounterValue').value = settingsModel.Counter;
+		if (jsonObj.payload.settings.settingsModel.TotalSeconds) {
+		  settingsModel.TotalSeconds = jsonObj.payload.settings.settingsModel.TotalSeconds;
+		  document.getElementById('txtTotalSecondsValue').value = settingsModel.TotalSeconds;
 		}
 		break;
 	  default:
