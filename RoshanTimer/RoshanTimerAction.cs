@@ -62,6 +62,14 @@ namespace RoshanTimer
                 deathCount++;
                 SettingsModel.Counter = 0; // Reset timer
                 ResumeRoshanTimer(args);
+                if (deathCount <= 3)
+                {
+                    Manager.SetImageAsync(args.context, "images/dead" + deathCount + ".png");
+                }
+                else
+                {
+                    Manager.SetImageAsync(args.context, "images/dead3.png");
+                }
                 return Task.CompletedTask;
             }
 
@@ -146,7 +154,7 @@ namespace RoshanTimer
             roshanTimer.Start();
             isRoshanTimerPaused = false;
             Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.Counter));
-            Manager.SetImageAsync(args.context, "images/dead.png");
+            Manager.SetImageAsync(args.context, "images/dead0.png");
         }
 
         /// <summary>
@@ -224,10 +232,10 @@ namespace RoshanTimer
             int totalMinutes = totalSeconds / 60;
             if (totalMinutes == 0)
             {
-                return "(" + deathCount + ") " + totalMinutes + ":" + totalSeconds.ToString("00");
+                return totalMinutes + ":" + totalSeconds.ToString("00");
             }
             
-            return  "(" + deathCount + ") " + totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
+            return totalMinutes + ":" + (totalSeconds - totalMinutes * 60).ToString("00");
         }
     }
 }
