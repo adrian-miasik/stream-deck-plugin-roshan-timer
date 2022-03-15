@@ -183,15 +183,36 @@ namespace RoshanTimer
 
             if (totalMinutes < 8)
             {
-                Manager.SetImageAsync(args.context, "images/dead.png");
+                if (deathCount <= 3)
+                {
+                    Manager.SetImageAsync(args.context, "images/dead" + deathCount + ".png");
+                }
+                else
+                {
+                    Manager.SetImageAsync(args.context, "images/dead3.png");
+                }
             }
             else if (totalMinutes < 11)
             {
-                Manager.SetImageAsync(args.context, "images/maybe.png");
+                if (deathCount <= 3)
+                {
+                    Manager.SetImageAsync(args.context, "images/maybe" + deathCount + ".png");
+                }
+                else
+                {
+                    Manager.SetImageAsync(args.context, "images/maybe3.png");
+                }
             }
             else
             {
-                Manager.SetImageAsync(args.context, "images/alive.png");
+                if (deathCount <= 3)
+                {
+                    Manager.SetImageAsync(args.context, "images/alive" + deathCount + ".png");
+                }
+                else
+                {
+                    Manager.SetImageAsync(args.context, "images/alive3.png");
+                }
             }
 
             Manager.SetTitleAsync(args.context, GetFormattedString(SettingsModel.TotalSeconds));
