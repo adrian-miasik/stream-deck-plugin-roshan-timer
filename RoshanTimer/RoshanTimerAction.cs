@@ -62,6 +62,7 @@ namespace RoshanTimer
                 deathCount++;
                 SettingsModel.TotalSeconds = 0; // Reset timer
                 ResumeRoshanTimer(args);
+                UpdateState(args, SettingsModel.TotalSeconds);
                 return Task.CompletedTask;
             }
 
@@ -171,7 +172,12 @@ namespace RoshanTimer
             }
 
             SettingsModel.TotalSeconds++;
-            int totalMinutes = SettingsModel.TotalSeconds / 60;
+            UpdateState(args, SettingsModel.TotalSeconds);
+        }
+
+        private void UpdateState(StreamDeckEventPayload args, int totalSeconds)
+        {
+            int totalMinutes = totalSeconds / 60;
 
             if (totalMinutes < 8)
             {
