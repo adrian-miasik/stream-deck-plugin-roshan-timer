@@ -30,18 +30,21 @@ A Stream Deck plugin created using the [StreamDeckToolkit](https://github.com/Fr
 <img src="RoshanTimer/images/dead0.png" width="64">
 
 - Drops `Aegis of the Immortal` on first death
-  <br>
-  <br>
+<br>
+<br>
+<br>
 
 <img src="RoshanTimer/images/dead1.png" width="64">
 
 - Drops `Aegis of the Immortal` + `Aghanims Shard` on second death
-  <br>
-  <br>
+<br>
+<br>
+<br>
 
 <img src="RoshanTimer/images/dead2.png" width="64">
 
 - Drops `Aegis of the Immortal` + `Cheese` + (`Refresher Shard` OR `Aghanims Blessing`) on third death
+<br>
 <br>
 <br>
 
