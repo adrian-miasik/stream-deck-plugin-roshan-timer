@@ -4,7 +4,7 @@
   <img src="RoshanTimer/images/pluginIcon@2x.png" width="128">
 </p>
 
-## Keep track of Roshan's respawn time and items dropped on death directly from your Stream Deck!
+## Keep track of Roshan's respawn time and loot directly from your Stream Deck!
 A Stream Deck plugin created using the [StreamDeckToolkit](https://github.com/FritzAndFriends/StreamDeckToolkit) template library.
 
 # How to Use
@@ -21,46 +21,76 @@ A Stream Deck plugin created using the [StreamDeckToolkit](https://github.com/Fr
 - [Direct Download](com.adrian-miasik.roshan-timer.streamDeckPlugin)
 
 # Timer States
+<img src="sources/roshan-timer-table.png" width="1280px">
+
 ## Default
 <img src="RoshanTimer/images/actionDefaultImage.png" width="64">
 
 - Timer has not been started. **Press on Roshan's first death to begin the timer.**
 
 ## Dead
+> - **Dead** when the timer is less than 8 minutes.
+
 <img src="RoshanTimer/images/dead0.png" width="64">
 
-- Drops `Aegis of the Immortal` on first death
-<br>
+- First Death
+- Roshan has previously dropped: `Aegis of the Immortal`
 <br>
 <br>
 
 <img src="RoshanTimer/images/dead1.png" width="64">
 
-- Drops `Aegis of the Immortal` + `Aghanims Shard` on second death
-<br>
+- Second Death
+- Roshan has previously dropped: `Aegis of the Immortal` + `Aghanims Shard` 
 <br>
 <br>
 
 <img src="RoshanTimer/images/dead2.png" width="64">
 
-- Drops `Aegis of the Immortal` + `Cheese` + (`Refresher Shard` OR `Aghanims Blessing`) on third death
-<br>
+- Third Death
+- Roshan has previously dropped: `Aegis of the Immortal` + `Cheese` + (`Refresher Shard` OR `Aghanims Blessing`)
 <br>
 <br>
 
 <img src="RoshanTimer/images/dead3.png" width="64">
 
-- Drops `Aegis of the Immortal` + `Cheese` + `Aghanims Blessing` + `Refresher Shard` on fourth (and above) death
+- Fourth Death
+- Roshan has previously dropped: `Aegis of the Immortal` + `Cheese` + `Aghanims Blessing` + `Refresher Shard`
 
-## Maybe
-<img src="RoshanTimer/images/maybe.png" width="64">
+## Maybe & Alive
+> - **Maybe** when the timer is between 8-11 minutes.
+> - **Alive** when the timer is 11 minutes or more.
 
-- When the timer is between 8-11 minutes
+<img src="RoshanTimer/images/maybe0.png" width="64">
+<img src="RoshanTimer/images/alive0.png" width="64">
 
-## Alive
-<img src="RoshanTimer/images/alive.png" width="64">
+- First Death
+- Roshan is going to drop: `Aegis of the Immortal` + `Aghanims Shard`
+  <br>
+  <br>
 
-- When the timer has been running for more than 11 minutes
+<img src="RoshanTimer/images/maybe1.png" width="64">
+<img src="RoshanTimer/images/alive1.png" width="64">
+
+- Second Death
+- Roshan is going to drop: `Aegis of the Immortal` + `Cheese` + (`Refresher Shard` OR `Aghanims Blessing`)
+  <br>
+  <br>
+
+<img src="RoshanTimer/images/maybe2.png" width="64">
+<img src="RoshanTimer/images/alive2.png" width="64">
+
+- Third Death
+- Roshan is going to drop: `Aegis of the Immortal` + `Cheese` + `Aghanims Blessing` + `Refresher Shard`
+  <br>
+  <br>
+
+<img src="RoshanTimer/images/maybe3.png" width="64">
+<img src="RoshanTimer/images/alive3.png" width="64">
+
+- Fourth Death
+- Roshan is going to drop: `Aegis of the Immortal` + `Cheese` + `Aghanims Blessing` + `Refresher Shard`
+
 
 # Contact Us / Support Line
 - For inquires related to this specific plugin / repository: `roshan-timer@adrian-miasik.com`

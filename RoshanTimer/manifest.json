@@ -11,12 +11,12 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Keep track of Dota 2's Roshan respawn time and items dropped on death.",
+      "Tooltip": "Keep track of Roshan's respawn time and item drops directly from your Stream Deck! (Dota 2)",
       "UUID": "com.adrian-miasik.roshan-timer.action"
     }
   ],
   "Name": "Roshan Timer",
-  "Description": "Keep track of Dota 2's Roshan respawn time and items dropped on death.",
+  "Description": "Keep track of Roshan's respawn time and item drops directly from your Stream Deck! (Dota 2)",
   "Author": "Adrian Miasik",
   "Icon": "images/pluginIcon",
   "URL": "https://www.adrian-miasik.com",
