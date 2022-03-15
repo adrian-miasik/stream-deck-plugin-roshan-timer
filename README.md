@@ -18,7 +18,7 @@ A Stream Deck plugin created using the [StreamDeckToolkit](https://github.com/Fr
 # Downloads
 **IMPORTANT NOTE: Links coming soon!**
 - Elgato Plugin Store (Recommended)
-- Direct Download
+- [Direct Download](com.adrian-miasik.roshan-timer.streamDeckPlugin)
 
 # Timer States
 ## Default
