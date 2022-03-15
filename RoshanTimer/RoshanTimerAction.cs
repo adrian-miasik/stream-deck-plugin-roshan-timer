@@ -62,14 +62,6 @@ namespace RoshanTimer
                 deathCount++;
                 SettingsModel.TotalSeconds = 0; // Reset timer
                 ResumeRoshanTimer(args);
-                if (deathCount <= 3)
-                {
-                    Manager.SetImageAsync(args.context, "images/dead" + deathCount + ".png");
-                }
-                else
-                {
-                    Manager.SetImageAsync(args.context, "images/dead3.png");
-                }
                 return Task.CompletedTask;
             }
 
