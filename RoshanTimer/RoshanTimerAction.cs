@@ -30,8 +30,8 @@ namespace RoshanTimer
         {
             if (numberOfPresses > 1)
             {
-                // If user last keystroke was less than than 0.5f second ago...
-                if ((DateTime.Now - releasedKeyTime).TotalSeconds < 0.5)
+                // If user last keystroke was less than than 0.4f second ago...
+                if ((DateTime.Now - releasedKeyTime).TotalSeconds < 0.4f)
                 {
                     // User has double clicked!
                     numberOfPresses = 0;
