@@ -23,27 +23,40 @@ A Stream Deck plugin created using the [StreamDeckToolkit](https://github.com/Fr
 # Timer States
 ## Default
 <img src="RoshanTimer/images/actionDefaultImage.png" width="64">
+
 - Timer has not been started. **Press on Roshan's first death to begin the timer.**
 
 ## Dead
 <img src="RoshanTimer/images/dead0.png" width="64">
+
 - Drops `Aegis of the Immortal` on first death
-<br>
+  <br>
+  <br>
+
 <img src="RoshanTimer/images/dead1.png" width="64">
+
 - Drops `Aegis of the Immortal` + `Aghanims Shard` on second death
-<br>
+  <br>
+  <br>
+
 <img src="RoshanTimer/images/dead2.png" width="64">
+
 - Drops `Aegis of the Immortal` + `Cheese` + (`Refresher Shard` OR `Aghanims Blessing`) on third death
 <br>
+<br>
+
 <img src="RoshanTimer/images/dead3.png" width="64">
+
 - Drops `Aegis of the Immortal` + `Cheese` + `Aghanims Blessing` + `Refresher Shard` on fourth (and above) death
 
 ## Maybe
 <img src="RoshanTimer/images/maybe.png" width="64">
+
 - When the timer is between 8-11 minutes
 
 ## Alive
 <img src="RoshanTimer/images/alive.png" width="64">
+
 - When the timer has been running for more than 11 minutes
 
 # Contact Us / Support Line
