@@ -1,0 +1,39 @@
+{
+  "Actions": [
+    {
+      "Icon": "images/actionIcon",
+      "Name": "Dota 2 - Roshan Timer",
+      "States": [
+        {
+          "Image": "images/actionDefaultImage",
+          "TitleAlignment": "bottom",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Keep track of Roshan's respawn time and item drops directly from your Stream Deck! (Dota 2)",
+      "UUID": "com.adrian-miasik.roshan-timer.action"
+    }
+  ],
+  "Name": "Roshan Timer",
+  "Description": "Keep track of Roshan's respawn time and item drops directly from your Stream Deck! (Dota 2)",
+  "Author": "Adrian Miasik",
+  "Icon": "images/pluginIcon",
+  "URL": "https://www.adrian-miasik.com",
+  "CodePath": "RoshanTimer.exe",
+  "Category": "Adrian Miasik",
+  "CategoryIcon": "images/category/categoryIcon",
+  "Disabled":  false,
+  "PropertyInspectorPath": "property_inspector/property_inspector.html",
+  "Version": "1.0.0",
+	"SDKVersion": 2,
+	"Software": {
+		"MinimumVersion":  "4.1"
+	},
+	"OS": [
+    {
+        "Platform": "windows",
+        "MinimumVersion" : "10"
+    }
+  ]
+}
