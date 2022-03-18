@@ -139,9 +139,7 @@
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
-
-	<!-- Include the README.md as part of the project for easy reference -->
-
+	
 	<!-- Post build scripts that must not be deployed with the executable -->
 	<ItemGroup>
 		<None Update="RegisterPluginAndStartStreamDeck.ps1">
