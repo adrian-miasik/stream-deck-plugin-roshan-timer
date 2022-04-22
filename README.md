@@ -1,3 +1,11 @@
+## This repository has been archived
+### A new version can be found here: https://github.com/adrian-miasik/stream-deck-plugins-dota-2
+ 
+--- 
+Originally created using [StreamDeckToolkit](https://github.com/FritzAndFriends/StreamDeckToolkit) but ported to [streamdeck-tools](https://github.com/BarRaider/streamdeck-tools) to reduce the large plugin file size. The new version has more actions (no longer just a Roshan timer), game state integration with the game client, and a much smaller file size (~30.4 MB -> ~1.5MB).
+
+---
+
 <h1 align="center">Roshan Timer</h1>
 <p align="center">A fan-made Stream Deck plugin for Dota 2.</p>
 <p align="center">
